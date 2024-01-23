@@ -30,6 +30,7 @@ public class throwhook : MonoBehaviour {
         {
             Destroy(curHook);
             ropeActive = false;
+            gameObject.tag = "Untagged";
         }
 
         //if (Input.GetMouseButtonDown (0)) {

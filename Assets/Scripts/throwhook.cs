@@ -13,39 +13,50 @@ public class throwhook : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		ropeActive = true;
+		Vector2 destiny = new Vector3(-0.5f, 3f, 0f);
+
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        Vector3 itemSize = spriteRenderer.bounds.size;
+
+        curHook = (GameObject)Instantiate(hook, transform.position, Quaternion.identity);
+		curHook.GetComponent<RopeScript> ().destiny = destiny;
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Destroy(curHook);
+            ropeActive = false;
+        }
+
+        //if (Input.GetMouseButtonDown (0)) {
 
 
-		if (Input.GetMouseButtonDown (0)) {
+        //	if (ropeActive == false) {
+        //		Vector2 destiny = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
 
-			if (ropeActive == false) {
-				Vector2 destiny = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+        //		curHook = (GameObject)Instantiate (hook, transform.position, Quaternion.identity);
+
+        //		curHook.GetComponent<RopeScript> ().destiny = destiny;
 
 
-				curHook = (GameObject)Instantiate (hook, transform.position, Quaternion.identity);
+        //		ropeActive = true;
+        //	} else {
 
-				curHook.GetComponent<RopeScript> ().destiny = destiny;
+        //		//delete rope
 
-
-				ropeActive = true;
-			} else {
-
-				//delete rope
-
-				Destroy (curHook);
+        //		Destroy (curHook);
 
 
-				ropeActive = false;
+        //		ropeActive = false;
 
-			}
-		}
+        //	}
+        //}
 
 
-	}
+    }
 }

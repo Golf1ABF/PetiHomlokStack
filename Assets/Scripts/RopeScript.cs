@@ -7,10 +7,10 @@ public class RopeScript : MonoBehaviour {
 
 	public Vector2 destiny;
 
-	public float speed= 1;
+	public float speed = 1f;
 
 
-	public float distance = 2;
+    public float distance = 4f;
 
 	public GameObject nodePrefab;
 

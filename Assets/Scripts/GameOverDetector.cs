@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class GameOverDetector : MonoBehaviour
 {
+    private GameObject HomlokSpawner;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        HomlokSpawner = GameObject.Find("HomlokSpawner");
     }
 
     // Update is called once per frame
@@ -15,9 +17,8 @@ public class GameOverDetector : MonoBehaviour
     {
         
     }
-
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("ok");
+        HomlokSpawner.SendMessage("setGameOver", true);
     }
 }

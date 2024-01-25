@@ -7,6 +7,8 @@ public class HomlokSpawner : MonoBehaviour
     [SerializeField] private GameObject HomlokPrefab;
     private GameObject MainCamera;
 
+    private bool isGameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +19,22 @@ public class HomlokSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isGameOver)
+        {
+            var cur = GameObject.FindWithTag("Player");
+            GameObject.Destroy(cur); 
+        }
     }
+
+    void setGameOver(bool val) { isGameOver = val; }
 
     void Leesett()
     {
-        transform.position += new Vector3(0, 0.8f);
-        Instantiate(HomlokPrefab, transform.position, Quaternion.identity);
-        MainCamera.transform.position += new Vector3(0, 0.25f);
+        if(!isGameOver)
+        {
+            transform.position += new Vector3(0, 0.8f);
+            Instantiate(HomlokPrefab, transform.position, Quaternion.identity);
+            MainCamera.transform.position += new Vector3(0, 0.25f);
+        }
     }
 }

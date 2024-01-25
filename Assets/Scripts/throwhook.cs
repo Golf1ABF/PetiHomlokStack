@@ -39,8 +39,9 @@ public class throwhook : MonoBehaviour {
         }
 
     }
-    private void OnTriggerEnter(Collider other)
+
+    void OnDestroy()
     {
-        Debug.Log("ok");
+        Destroy(curHook);
     }
 }

@@ -22,8 +22,8 @@ public class HomlokSpawner : MonoBehaviour
 
     void Leesett()
     {
-        transform.position += new Vector3(0, 1);
+        transform.position += new Vector3(0, 0.8f);
         Instantiate(HomlokPrefab, transform.position, Quaternion.identity);
-        MainCamera.transform.position += new Vector3(0, 0.5f);
+        MainCamera.transform.position += new Vector3(0, 0.25f);
     }
 }

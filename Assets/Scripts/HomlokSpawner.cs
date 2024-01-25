@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class HomlokSpawner : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class HomlokSpawner : MonoBehaviour
         {
             var cur = GameObject.FindWithTag("Player");
             GameObject.Destroy(cur); 
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
         }
     }
 
@@ -34,7 +38,7 @@ public class HomlokSpawner : MonoBehaviour
         {
             transform.position += new Vector3(0, 0.8f);
             Instantiate(HomlokPrefab, transform.position, Quaternion.identity);
-            MainCamera.transform.position += new Vector3(0, 0.25f);
+            MainCamera.transform.position += new Vector3(0, 0.6f);
         }
     }
 }

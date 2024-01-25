@@ -5,6 +5,7 @@ public class throwhook : MonoBehaviour {
 
 
 	public GameObject hook;
+    private GameObject HomlokSpawner;
 
 
 	public bool ropeActive;
@@ -14,50 +15,32 @@ public class throwhook : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ropeActive = true;
-		Vector2 destiny = new Vector3(-0.5f, 3f, 0f);
+        HomlokSpawner = GameObject.Find("HomlokSpawner");
+        Vector2 destiny = new Vector3(-0.5f, HomlokSpawner.transform.position.y + 2, 0f);
 
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         Vector3 itemSize = spriteRenderer.bounds.size;
 
         curHook = (GameObject)Instantiate(hook, transform.position, Quaternion.identity);
 		curHook.GetComponent<RopeScript> ().destiny = destiny;
+
+        
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && ropeActive)
         {
             Destroy(curHook);
             ropeActive = false;
             gameObject.tag = "Untagged";
+            HomlokSpawner.SendMessage("Leesett");
         }
 
-        //if (Input.GetMouseButtonDown (0)) {
-
-
-        //	if (ropeActive == false) {
-        //		Vector2 destiny = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-
-
-        //		curHook = (GameObject)Instantiate (hook, transform.position, Quaternion.identity);
-
-        //		curHook.GetComponent<RopeScript> ().destiny = destiny;
-
-
-        //		ropeActive = true;
-        //	} else {
-
-        //		//delete rope
-
-        //		Destroy (curHook);
-
-
-        //		ropeActive = false;
-
-        //	}
-        //}
-
-
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("ok");
     }
 }
